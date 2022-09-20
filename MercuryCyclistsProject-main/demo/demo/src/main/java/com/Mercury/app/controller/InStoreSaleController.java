@@ -13,4 +13,7 @@ public class InStoreSaleController
 
     @Autowired
     public InStoreSaleController(InStoreSaleService inStoreSaleService) {this.inStoreSaleService = inStoreSaleService;}
+    
+    @PostMapping("addnewinstoresale")
+    public void addNewInStoreSale(@RequestBody InStoreSale inStoreSale) { inStoreSaleService.addNewInStoreSale(inStoreSale); }
 }
