@@ -11,4 +11,11 @@ public class InStoreSaleService
 
     @Autowired
     public InStoreSaleService(InStoreSaleRepository inStoreSaleRepository) {this.inStoreSaleRepository = inStoreSaleRepository;}
+    
+    public void addNewInStoreSale(InStoreSale inStoreSale)
+    {
+        Optional<InStoreSale> inStoreSaleOptional = inStoreSaleRepository.findInStoreSaleById(inStoreSale.getId());
+        if (inStoreSaleOptional.isPresent()) { throw new IllegalStateException("Sale with id " + inStoreSale.getId() + " already established"); }
+        inStoreSaleRepository.save(inStoreSale);
+    }
 }
