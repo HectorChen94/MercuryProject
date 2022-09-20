@@ -32,5 +32,8 @@ public class StoreController
     //Use case 9 (look up sales by store)
     @GetMapping("{storeId}/sales")
     public List<Sale> getSalesByStore(@PathVariable Long storeId) { return storeService.getSalesByStore(storeId); }
+    
+    @PostMapping("/addnewstore")
+    public void addNewStore(@RequestBody Store store) { storeService.addNewStore(store); }
 
 }
