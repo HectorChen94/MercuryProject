@@ -25,4 +25,11 @@ public class StoreService
         if (!(storeOptional.isPresent())) { throw new IllegalStateException("Store with id " + storeId + " not found"); }
         return storeOptional.get().getInStoreSales();
     }
+    
+    public void addNewStore(Store store)
+    {
+        Optional<Store> storeOptional = storeRepository.findStoreById(store.getId());
+        if (storeOptional.isPresent()) { throw new IllegalStateException("Store with id " + store.getId() + " already established"); }
+        storeRepository.save(store);
+    }
 }
