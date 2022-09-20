@@ -1,0 +1,101 @@
+//Making a Part
+###
+POST http://localhost:8080/api/v1/part
+Content-Type: Application/JSON
+
+{
+  "id": 1,
+  "name": "handlebars",
+  "description": "the thing you hold onto"
+}
+
+
+
+//Testing making a supplier including contacts and parts
+###
+POST http://localhost:8080/api/v1/supplier/add
+Content-Type: Application/JSON
+
+{
+  "id": 1,
+  "companyName": "business.co",
+  "base": "Woolongong",
+  "contacts":
+  [
+    {
+      "name": "Jimmy",
+      "phone": "12345678",
+      "email": "something123@gamil.com",
+      "position": "the funny guy"
+    },
+    {
+      "name": "Kendra",
+      "phone": "87654321",
+      "email": "KendraMendra99@outlook.com",
+      "position": "the smart one"
+    }
+  ],
+  "parts":
+  [
+    {
+      "name": "bell",
+      "description": "the thing that goes 'DING!"
+    },
+    {
+      "name": "tire",
+      "description": "the thing that touches the ground"
+    }
+  ]
+}
+
+
+
+//Test USE CASE 6
+###
+GET http://localhost:8080/api/v1/supplier/ofpart/{partId}
+
+
+
+
+//Testing making a product including parts and sales objects
+###
+POST http://localhost:8080/api/v1/product
+Content-Type: Application/JSON
+
+{
+  "id": 1,
+  "name": "blue bicycle",
+  "price": 23.99,
+  "comment": "It is a blue bicycle. Very pretty",
+  "parts":
+  [
+    {
+      "name": "seat",
+      "description": "The thing you sit on"
+    },
+    {
+      "name": "frame",
+      "description": "The thing the seat sits on"
+    }
+  ],
+  "sales":
+  [
+    {
+      "type": "InStoreSale",
+      "id": 1,
+      "productName": "the blue bicycle",
+      "quantity": 1,
+      "dataTime": "2014-01-01T23:28:56.782Z",
+      "recieptNumber": 10
+    },
+    {
+      "type": "OnlineSale",
+      "id": 2,
+      "productName": "the blue bicycle",
+      "quantity": 1,
+      "dataTime": "2015-01-01T23:28:56.782Z",
+      "customername": "Mark",
+      "customerAddress": "100 Charming Ave"
+    }
+  ]
+}
