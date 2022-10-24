@@ -1,7 +1,10 @@
 package com.Mercury.app.controller;
 
-import com.Mercury.app.model.InventoryDomain.Part;
-import com.Mercury.app.model.Inventory.Product;
+import com.Mercury.app.model.InventoryDomain.Aggregate.Part;
+import com.Mercury.app.model.InventoryDomain.Aggregate.Product;
+import com.Mercury.app.model.InventoryDomain.ValueObject.Comment;
+import com.Mercury.app.model.InventoryDomain.ValueObject.Price;
+import com.Mercury.app.model.InventoryDomain.ValueObject.ProductName;
 import com.Mercury.app.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -37,11 +40,11 @@ public class ProductController {
     @PutMapping(path = {"{productId}"})
     public void updateProduct(
             @PathVariable Long productId,
-            @RequestParam(required = false) String name,
-            @RequestParam(required = false) double price,
-            @RequestParam(required = false) String comment)
+            @RequestParam(required = false) ProductName productName,
+            @RequestParam(required = false) Price price,
+            @RequestParam(required = false) Comment comment)
     {
-        productService.updatePart(name,productId,price,comment);
+        productService.updatePart(productName,productId,price,comment);
     }
 
     //Use case 7 'create sale' (Another method handles the backorder option)

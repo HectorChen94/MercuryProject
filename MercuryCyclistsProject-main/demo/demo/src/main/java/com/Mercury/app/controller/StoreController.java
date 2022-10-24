@@ -1,12 +1,10 @@
 package com.Mercury.app.controller;
 
-import com.Mercury.app.model.SalesDomain.Sale;
+import com.Mercury.app.model.SalesDomain.Aggregate.Sale;
+import com.Mercury.app.model.SalesDomain.Aggregate.Store;
 import com.Mercury.app.service.StoreService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;

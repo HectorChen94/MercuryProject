@@ -1,6 +1,8 @@
 package com.Mercury.app.controller;
 
-import com.Mercury.app.model.InventoryDomain.Part;
+import com.Mercury.app.model.InventoryDomain.Aggregate.Part;
+import com.Mercury.app.model.InventoryDomain.ValueObject.Description;
+import com.Mercury.app.model.InventoryDomain.ValueObject.PartName;
 import com.Mercury.app.service.PartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -37,9 +39,9 @@ public class PartController {
     @PutMapping(path = {"{partId}"})
     public void updatePart(
             @PathVariable Long partId,
-            @RequestParam(required=false) String name,
-            @RequestParam(required=false) String description)
+            @RequestParam(required=false) PartName partName,
+            @RequestParam(required=false) Description description)
     {
-        partService.updatePart(partId, name, description);
+        partService.updatePart(partId, partName, description);
     }
 }
