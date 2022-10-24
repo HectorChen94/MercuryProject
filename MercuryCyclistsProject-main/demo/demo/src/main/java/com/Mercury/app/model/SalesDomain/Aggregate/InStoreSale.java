@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 @Entity
 public class InStoreSale extends Sale
 {
+    @Embedded
     private RecieptNumber recieptNumber;
 
     @ManyToOne
