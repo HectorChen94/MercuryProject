@@ -13,7 +13,9 @@ import java.time.LocalDateTime;
 @Entity
 public class OnlineSale extends Sale
 {
+    @Embedded
     private CustomerName customerName;
+    @Embedded
     private CustomerAddress customerAddress;
 
     public OnlineSale() {super();}
