@@ -1,7 +1,7 @@
 package com.Mercury.app.repository;
 
 
-import com.Mercury.app.model.InventoryDomain.Product;
+import com.Mercury.app.model.InventoryDomain.Aggregate.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
