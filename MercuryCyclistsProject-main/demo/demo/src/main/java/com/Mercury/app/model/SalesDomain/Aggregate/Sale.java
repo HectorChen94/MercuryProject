@@ -23,8 +23,11 @@ public abstract class Sale
     @Id
     @GeneratedValue
     private Long id;
+    @Embedded
     private ProductName productName;
+    @Embedded
     private Quantity quantity;
+    @Embedded
     private DataTime dataTime;
     @ManyToOne
     private Product product;
