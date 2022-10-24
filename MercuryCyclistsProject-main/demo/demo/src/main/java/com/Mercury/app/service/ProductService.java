@@ -1,6 +1,9 @@
 package com.Mercury.app.service;
-import com.Mercury.app.model.InventoryDomain.Part;
-import com.Mercury.app.model.InventoryDomain.Product;
+import com.Mercury.app.model.InventoryDomain.Aggregate.Part;
+import com.Mercury.app.model.InventoryDomain.Aggregate.Product;
+import com.Mercury.app.model.InventoryDomain.ValueObject.Comment;
+import com.Mercury.app.model.InventoryDomain.ValueObject.Price;
+import com.Mercury.app.model.InventoryDomain.ValueObject.ProductName;
 import com.Mercury.app.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,18 +24,18 @@ public class ProductService {
 
     public List<Product> findAllProducts() { return productRepository.findAll();}
     public void addNewProduct(Product product){
-        Optional<Product>productOptional=productRepository.findProductById(product.getId());
+        Optional<Product>productOptional=productRepository.findProductById(product.getProductId());
         if(productOptional.isPresent()) {
-            throw new IllegalStateException("Product already exists with Id: " + product.getId());
+            throw new IllegalStateException("Product already exists with Id: " + product.getProductId());
         }
         productRepository.save(product);
 
     }
     @Transactional
-    public void updatePart(String name,Long productId,double price,String comment){
+    public void updatePart(ProductName productName, Long productId, Price price, Comment comment){
         Product product=productRepository.findProductById(productId).orElseThrow( () -> new IllegalStateException("No contact found with email address " + productId));
-        if (name!=null && name.length()>0 && !Objects.equals(product.getName(),name)) { product.setName(name); }
-        if (productId>0 && !Objects.equals(product.getId(),productId)) { product.setProductId(productId); }
+        if (productName!=null && productName.length()>0 && !Objects.equals(product.getProductName(),productName)) { product.setProductName(productName); }
+        if (productId>0 && !Objects.equals(product.getProductId(),productId)) { product.setProductId(productId); }
         if (!Objects.equals(product.getPrice(),price)) { product.setPrice(price); }
         if(comment!=null && comment.length()>0 && !Objects.equals(product.getComment(),comment)){product.setComment(comment);}
     }
@@ -56,7 +59,7 @@ public class ProductService {
         ArrayList<Product> validProducts = new ArrayList<>();
         for (Product product:allProducts)
         {
-            if (product.getId() == saleId) { validProducts.add(product); }
+            if (product.getProductId() == saleId) { validProducts.add(product); }
         }
         //In case nothing is found
         if (validProducts.size() == 0)

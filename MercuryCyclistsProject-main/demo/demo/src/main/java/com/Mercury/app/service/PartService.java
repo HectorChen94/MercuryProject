@@ -1,6 +1,8 @@
 package com.Mercury.app.service;
 
-import com.Mercury.app.model.InventoryDomain.Part;
+import com.Mercury.app.model.InventoryDomain.Aggregate.Part;
+import com.Mercury.app.model.InventoryDomain.ValueObject.Description;
+import com.Mercury.app.model.InventoryDomain.ValueObject.PartName;
 import com.Mercury.app.repository.PartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,19 +27,19 @@ public class PartService
 
     public void addNewPart(Part part)
     {
-        Optional<Part> partOptional = partRepository.findPartById(part.getId());
-        if (partOptional.isPresent()) { throw new IllegalStateException("part with Id:" + part.getId() + " already exists"); }
+        Optional<Part> partOptional = partRepository.findPartById(part.getPartId());
+        if (partOptional.isPresent()) { throw new IllegalStateException("part with Id:" + part.getPartId() + " already exists"); }
         partRepository.save(part);
     }
 
     @Transactional
-    public void updatePart(Long partId, String name, String description)
+    public void updatePart(Long partId, PartName partName, Description description)
     {
         Part part = partRepository.findById(partId).orElseThrow(
                 () -> new IllegalStateException("No part found with Id " + partId));
 
-        if (name!=null && name.length()>0 && !Objects.equals(part.getName(),name)) { part.setName(name); }
-        if (!Objects.equals(part.getId(),partId)) { part.setPartId(partId); }
+        if (partName!=null && partName.length()>0 && !Objects.equals(part.getPartName(),partName)) { part.setPartName(partName); }
+        if (!Objects.equals(part.getPartId(),partId)) { part.setPartId(partId); }
         if (description!=null && !Objects.equals(part.getDescription(),description)) { part.setDescription(description); }
     }
 }

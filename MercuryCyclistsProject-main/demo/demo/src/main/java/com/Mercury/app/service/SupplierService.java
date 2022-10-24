@@ -1,7 +1,7 @@
 package com.Mercury.app.service;
 
 import com.Mercury.app.model.ProcurementDomain.Contact;
-import com.Mercury.app.model.InventoryDomain.Part;
+import com.Mercury.app.model.InventoryDomain.Aggregate.Part;
 import com.Mercury.app.model.InventoryDomain.Supplier;
 import com.Mercury.app.repository.SupplierRepository;
 import org.springframework.beans.factory.annotation.Autowired;

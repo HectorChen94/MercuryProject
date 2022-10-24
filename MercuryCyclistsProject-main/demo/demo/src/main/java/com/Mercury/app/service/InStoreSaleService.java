@@ -1,8 +1,11 @@
 package com.Mercury.app.service;
 
+import com.Mercury.app.model.SalesDomain.Aggregate.InStoreSale;
 import com.Mercury.app.repository.InStoreSaleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class InStoreSaleService
