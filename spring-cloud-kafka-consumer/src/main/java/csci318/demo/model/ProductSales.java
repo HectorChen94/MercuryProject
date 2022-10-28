@@ -1,32 +1,32 @@
 package csci318.demo.model;
 
-public class ProductSales
+public class ProductSalesValue
 {
     private String productName;
-    private long salesQuantity; //How many sales the associated product has
+    private long totalSalesValue; //How many sales the associated product has
 
-    public ProductSales() {}
-    public ProductSales(String productName, long salesQuantity) {
+    public ProductSalesValue() {}
+    public ProductSalesValue(String productName, long salesQuantity) {
         this.productName = productName;
-        this.salesQuantity = salesQuantity;
+        this.totalSalesValue = salesQuantity;
     }
 
     public String getProductName() {return productName;}
     public void setProductName(String productName) {
         this.productName = productName;
     }
-    public long getSalesQuantity() {
-        return salesQuantity;
+    public long getTotalSalesValue() {
+        return totalSalesValue;
     }
-    public void setSalesQuantity(long salesQuantity) {
-        this.salesQuantity = salesQuantity;
+    public void setTotalSalesValue(long totalSalesValue) {
+        this.totalSalesValue = totalSalesValue;
     }
 
     @Override
     public String toString() {
         return "ProductSales{" +
                 "productName='" + productName + '\'' +
-                ", salesQuantity=" + salesQuantity +
+                ", salesQuantity=" + totalSalesValue +
                 '}';
     }
 }
