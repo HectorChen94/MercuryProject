@@ -3,7 +3,7 @@ package csci318.demo.model;
 public class ProductSalesValue
 {
     private String productName;
-    private long totalSalesValue; //How many sales the associated product has
+    private long totalSalesValue; //The total value of all of the sales of the associated product
 
     public ProductSalesValue() {}
     public ProductSalesValue(String productName, long salesQuantity) {
