@@ -1,8 +1,8 @@
-package com.example.processor.service;
+package csci318.demo.service;
 
-import csci318.demo.model.Appliance;
-import csci318.demo.model.BrandQuantity;
-import csci318.demo.model.Equipment;
+import csci318.demo.model.Part;
+import csci318.demo.model.Product;
+import csci318.demo.model.ProductSales;
 import org.apache.kafka.common.serialization.Serde;
 import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.common.utils.Bytes;
@@ -32,11 +32,11 @@ public class ProductStreamProcessing {
         return inputStream -> {
 
             inputStream.map((k, v) -> {
-                String partName = v.getPart();
-                String saleNumber = v.getSale();
+                String partName = v.getParts();
+                String saleNumber = v.getProductSales();
                 Part part = new Part();
-                part.setPart(partName);
-                part.setSale(saleNumber);
+                part.setParts(partName);
+                part.setProduct(saleNumber);
                 String new_key = saleNumber + partName;
                 return KeyValue.pair(new_key, part);
             }).toTable(
@@ -47,7 +47,7 @@ public class ProductStreamProcessing {
             );
 
             KTable<String, Long> brandKTable = inputStream.
-                    mapValues(Product::getBrand).
+                    mapValues(Product::getProductSales).
                     groupBy((keyIgnored, value) -> value).
                     count(
                             Materialized.<String, Long, KeyValueStore<Bytes, byte[]>>as(SALE_STATE_STORE).
