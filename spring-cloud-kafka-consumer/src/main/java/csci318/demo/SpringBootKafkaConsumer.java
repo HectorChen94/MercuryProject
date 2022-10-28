@@ -1,6 +1,6 @@
 package csci318.demo;
 
-import csci318.demo.model.ProductSales;
+import csci318.demo.model.ProductSalesValue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -19,7 +19,7 @@ public class SpringBootKafkaConsumer {
 	}
 
 	@Bean
-	public Consumer<ProductSales> consume() {
+	public Consumer<ProductSalesValue> consume() {
 		return input -> log.info(input.toString());
 	}
 }
