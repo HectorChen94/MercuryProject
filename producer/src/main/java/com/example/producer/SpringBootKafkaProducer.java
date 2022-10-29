@@ -35,7 +35,7 @@ public class SpringBootKafkaProducer {
 					assert product != null;
 					log.info(product.toString());
 					//The binder name "appliance-outbound" is defined in the application.yml.
-					streamBridge.send("appliance-outbound", product);
+					streamBridge.send("product-outbound", product);
 					Thread.sleep(1200);
 				}
 			}
