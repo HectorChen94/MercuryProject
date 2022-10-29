@@ -1,35 +1,28 @@
 package csci318.demo.model;
 
 import javax.persistence.*;
-import java.io.Serializable;
+
 
 @Entity
 //@JsonDeserialize(as=Part.class)
-public class Part implements Serializable
+public class Part
 {
     @Id
     @GeneratedValue
     private Long partId;
-    @Embedded
+
     private String partName;
-    @Embedded
+
     private String description;
-    @ManyToOne(cascade = {CascadeType.ALL})
-    private Product product;
+    private String productSales;
 
     public Part() {}
 
-    public Part(String partName, Long partId, String description){
-        this.partName = partName;
+    public Part(String partName, Long partId, String description, String productSales){
+         this.partName = partName;
         this.partId = partId;
         this.description = description;
-    }
-
-    public Part(Long partId, String partName, String description, Product product) {
-        this.partId = partId;
-        this.partName = partName;
-        this.description = description;
-        this.product = product;
+        this.productSales = productSales;
     }
 
     public String getPartName(){
@@ -43,8 +36,9 @@ public class Part implements Serializable
         return description;
     }
 
-    public Product getProduct() { return product; }
-
+    public String getProductSales() {
+        return productSales;
+    }
 
     public void setPartName(String partName) {
         this.partName = partName;
@@ -56,7 +50,9 @@ public class Part implements Serializable
         this.description = description;
     }
 
-    public void setProduct(Product product) { this.product = product; }
+    public void setProductSales(String productSales) {
+        this.productSales = productSales;
+    }
 
     @Override
     public String toString() {
@@ -67,3 +63,5 @@ public class Part implements Serializable
                 '}';
     }
 }
+
+
