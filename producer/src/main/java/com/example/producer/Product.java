@@ -1,4 +1,4 @@
-package csci318.demo.model;
+package com.example.producer.model;
 
 import javax.persistence.*;
 
